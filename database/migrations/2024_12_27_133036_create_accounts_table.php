@@ -12,6 +12,7 @@ return new class extends Migration
         // Membuat tabel 'accounts'
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('nama');
             $table->text('alamat');
             $table->date('tempat_tanggal_lahir');
@@ -57,6 +58,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('accounts');
+        Schema::dropIfExists('users');
         DB::unprepared("DROP TRIGGER IF EXISTS validate_keterangan_pekerjaan_insert;");
         DB::unprepared("DROP TRIGGER IF EXISTS validate_keterangan_pekerjaan_update;");
     }

@@ -21,8 +21,9 @@ return new class extends Migration
             $table->decimal('nominal_pembayaran', 10, 2)->nullable();
             $table->enum('cara_pembayaran', ['Cash', 'Transfer'])->nullable();
             $table->enum('rekening_transfer', ['BRI', 'Mandiri', 'BNI 1', 'BSI', 'BNI 2', 'BCA'])->nullable();
+            $table->timestamps();
         });
-    }
+    }    
 
     public function down()
     {
